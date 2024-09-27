@@ -6,8 +6,12 @@ type Item = {
 	id: number
 }
 
-const Form = () => {
-	const [item, setItem] = useState<Item>()
+type FormProps = {
+	setItems: Item[]
+}
+
+const Form = ({ setItems }: FormProps) => {
+	const [item, setItem] = useState<Item | undefined>('')
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()

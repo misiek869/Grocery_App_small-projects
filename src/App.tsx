@@ -2,11 +2,11 @@ import { useState } from 'react'
 import Form from './components/Form'
 
 function App() {
-	const [items, setItems] = useState(0)
+	const [items, setItems] = useState([])
 
 	return (
 		<section>
-			<Form />
+			<Form setItems={setItems} />
 		</section>
 	)
 }
