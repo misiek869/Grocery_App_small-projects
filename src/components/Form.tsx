@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 
+type Item = {
+	name: string
+	completed: boolean
+	id: number
+}
+
 const Form = () => {
-	const [item, setItem] = useState<string>('')
+	const [item, setItem] = useState<Item>()
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
