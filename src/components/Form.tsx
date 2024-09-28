@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-
-type Item = {
-	name: string
-	completed: boolean
-	id: number
-}
+import { Item } from '../App'
 
 type FormProps = {
 	setItems: Item[]
 }
 
 const Form = ({ setItems }: FormProps) => {
-	const [item, setItem] = useState<Item | undefined>('')
+	const [item, setItem] = useState<Item | undefined>({
+		name: '',
+		completed: false,
+		id: 0,
+	})
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -19,12 +18,19 @@ const Form = ({ setItems }: FormProps) => {
 			console.log('no item')
 			return
 		}
-		console.log(123)
+		setItems(prevItems => [...prevItems, { ...item, id: prevItems.length + 1 }])
+		setItem({ name: '', completed: false, id: 0 })
 	}
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<input type='text' placeholder='add item' name='item' value={item} />
+			<input
+				type='text'
+				placeholder='add item'
+				name='item'
+				value={item.name}
+				onChange={e => setItem({ ...item, name: e.target.value })}
+			/>
 			<button type='submit'>Add</button>
 		</form>
 	)
